@@ -1,5 +1,5 @@
 helpers.installPackages("shinydashboard", 'shinycssloaders', 'plotly', "knitr",
-    'kableExtra')
+    'kableExtra', 'ggfortify', 'FNN')
 
 # Define working directory
 # data <- read.table("PES2019.txt",header=TRUE,sep="\t")
