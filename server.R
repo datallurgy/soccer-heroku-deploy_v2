@@ -7,6 +7,10 @@ library(ggfortify)
 library(dplyr)
 library(FNN)
 
+# Define working directory
+data <- read.table("PES2019.txt",header=TRUE,sep="\t")
+names(data)[1] <- "player"  #rename from "ï..player" to "player"
+
 function(input, output, session) {
   
     selectedData1 <- reactive({
