@@ -1,13 +1,4 @@
-library(shinydashboard)
-library(shinythemes)
-library(plotly)
-library(shinycssloaders)
-library(scales)
-library(knitr)
-library(kableExtra)
-library(ggfortify)
-library(dplyr)
-library(FNN)
+library(shiny)
 
 function(input, output, session) {
   
