@@ -4,6 +4,10 @@ library(shinythemes)
 library(shinycssloaders)
 library(plotly)
 
+# Define working directory
+data <- read.table("PES2019.txt",header=TRUE,sep="\t")
+names(data)[1] <- "player"  #rename from "ï..player" to "player"
+
 navbarPage("The ten most similar players - Pro Evolution Soccer 2019",
            tabPanel("Graphic",fluidPage(theme = shinytheme("flatly")),
 tags$head(
