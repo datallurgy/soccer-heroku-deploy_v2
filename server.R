@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 library(scales)
 library(knitr)
 library(kableExtra)
