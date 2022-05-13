@@ -1,3 +1,5 @@
+library(shinythemes)
+
 navbarPage("The ten most similar players - Pro Evolution Soccer 2019",
            tabPanel("Graphic",fluidPage(theme = shinytheme("flatly")),
 tags$head(
