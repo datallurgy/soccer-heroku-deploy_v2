@@ -1,4 +1,11 @@
 library(shiny)
+library(plotly)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(ggfortify)
+library(dplyr)
+library(FNN)
 
 function(input, output, session) {
   
