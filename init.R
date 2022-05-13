@@ -1,4 +1,5 @@
-helpers.installPackages("shinydashboard", 'shinycssloaders', 'plotly', "knitr")
+helpers.installPackages("shinydashboard", 'shinycssloaders', 'plotly', "knitr",
+    'kableExtra')
 
 # Define working directory
 # data <- read.table("PES2019.txt",header=TRUE,sep="\t")
