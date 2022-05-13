@@ -1,4 +1,4 @@
-helpers.installPackages("shinydashboard")
+helpers.installPackages("shinydashboard", 'shinycssloaders')
 
 # Define working directory
 data <- read.table("PES2019.txt",header=TRUE,sep="\t")
