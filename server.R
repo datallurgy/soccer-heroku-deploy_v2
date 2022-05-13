@@ -1,3 +1,14 @@
+library(shinydashboard)
+library(shinythemes)
+library(plotly)
+library(shinycssloaders)
+library(scales)
+library(knitr)
+library(kableExtra)
+library(ggfortify)
+library(dplyr)
+library(FNN)
+
 function(input, output, session) {
   
     selectedData1 <- reactive({
