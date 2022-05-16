@@ -10,7 +10,7 @@ data <- read.table("PES2019.txt",header=TRUE,sep="\t")
 names(data)[1] <- "player"  #rename from "ï..player" to "player"
 
 navbarPage("The ten most similar players - Pro Evolution Soccer 2019",
-           tabPanel("Graphic",fluidPage(theme = shinytheme("flatly")),
+           tabPanel("Graphic",fluidPage(theme = shinytheme("cosmo")),
 tags$head(
   tags$style(HTML(".shiny-output-error-validation{color: red;}"))),
 pageWithSidebar(
