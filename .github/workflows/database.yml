@@ -9,6 +9,7 @@ jobs:
 
     steps:
     - name: Create env file
+      uses: actions/checkout@v3
       run: |
           touch src/.env
           echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} >> src/.env
