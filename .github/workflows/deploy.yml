@@ -16,6 +16,6 @@ jobs:
           heroku_app_name: "soccer-heroku-deploy-v2" #Must be unique in Heroku
           heroku_email: "allyson@datallurgy.com"
           buildpack: "vsv/heroku-buildpack-r"
-          healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
+          #healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
           #delay: 15
-          rollbackonhealthcheckfailed: false
+          #rollbackonhealthcheckfailed: false
