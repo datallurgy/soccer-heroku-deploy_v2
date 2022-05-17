@@ -1,21 +1,21 @@
 name: database
+
 on:
-  push:
+  workflow_dispatch
+  
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: print secret
-      run: |
-          echo $PASSPHRASE >> src/.env
-          cat src/.env
-      shell: bash
       env:
         PASSPHRASE : ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
        name: PASSPHRASE
        path: src/.env
