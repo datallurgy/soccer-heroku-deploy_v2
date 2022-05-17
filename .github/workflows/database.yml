@@ -8,14 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: print secret
-      env:
-        PASSPHRASE : ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        USER_PW: ${{secrets.SHINYMANAGER_USER}}
+    - name: Create env file
+      run: |
+          touch .env
+          echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} >> .env
+          echo ADMIN_PW=${{secrets.SHINYMANAGER_ADMIN}} >> .env
+          echo USER_PW=${{secrets.SHINYMANAGER_USER}} >> .env
+          cat .env
         
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
-       name: PASSPHRASE
+       name: credentials
        path: src/.env
