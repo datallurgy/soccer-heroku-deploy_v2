@@ -8,8 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Create env file
+    - name: checkout repo
       uses: actions/checkout@v3
+      
+    - name: Create env file
       run: |
           touch src/.env
           echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} >> src/.env
