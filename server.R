@@ -9,7 +9,7 @@ library(dplyr)
 library(FNN)
 
 # Define working directory
-data <- read.table("PES2019.txt",header=TRUE,sep="\t")
+data <- read.table("data/PES2019.txt",header=TRUE,sep="\t")
 names(data)[1] <- "player"  #rename from "ï..player" to "player"
 
 function(input, output, session) {
@@ -17,7 +17,7 @@ function(input, output, session) {
   # check_credentials directly on sqlite db
   res_auth <- secure_server(
     check_credentials = check_credentials(
-      "database.sqlite",
+      "data/database.sqlite",
       passphrase = "passphrase_without_keyring"
     )
   )
