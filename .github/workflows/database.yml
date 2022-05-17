@@ -1,0 +1,21 @@
+name: database
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: print secret
+      run: |
+          echo $PASSPHRASE >> src/.env
+          cat src/.env
+      shell: bash
+      env:
+        PASSPHRASE : ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+       name: PASSPHRASE
+       path: src/.env
