@@ -1,7 +1,5 @@
 <!-- badges: start -->
-[![prod-release](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/prod-release.yml/badge.svg)](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/prod-release.yml)
-
-[![deploy](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/deploy.yml)
+[![deploy](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/deploy.yml) [![prod-release](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/prod-release.yml/badge.svg)](https://github.com/datallurgy/soccer-heroku-deploy_v2/actions/workflows/prod-release.yml) 
 <!-- badges: end -->
 
 # The ten most similar players Pro Evolution Soccer 2019
