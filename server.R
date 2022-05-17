@@ -1,4 +1,5 @@
 library(shiny)
+library(shinymanager)
 library(plotly)
 library(scales)
 library(knitr)
@@ -7,11 +8,30 @@ library(ggfortify)
 library(dplyr)
 library(FNN)
 
+# define some credentials
+credentials <- data.frame(
+  user = c("shiny", "shinymanager"), # mandatory
+  password = c("qwerty", "12345"), # mandatory
+  admin = c(FALSE, TRUE),
+  comment = "Simple and secure authentification mechanism 
+  for single ‘Shiny’ applications.",
+  stringsAsFactors = FALSE
+)
+
 # Define working directory
 data <- read.table("PES2019.txt",header=TRUE,sep="\t")
 names(data)[1] <- "player"  #rename from "ï..player" to "player"
 
 function(input, output, session) {
+  
+  # check_credentials returns a function to authenticate users
+  res_auth <- secure_server(
+    check_credentials = check_credentials(credentials)
+  )
+  
+  output$auth_output <- renderPrint({
+    reactiveValuesToList(res_auth)
+  })
   
     selectedData1 <- reactive({
       data %>%
