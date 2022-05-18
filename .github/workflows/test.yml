@@ -50,7 +50,8 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add data/database.sqlite src/.env
+        git add data/database.sqlite 
+        git add src/.env
         git commit -m "update password database and .env passphrase"
         
     - name: push changes
@@ -68,4 +69,4 @@ jobs:
         buildpack: "vsv/heroku-buildpack-r"
         healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
         delay: 15
-        rollbackonhealthcheckfailed: false
+        rollbackonhealthcheckfailed: true
