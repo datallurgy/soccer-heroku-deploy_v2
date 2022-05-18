@@ -6,9 +6,6 @@ user_pw <- Sys.getenv("USER_PW")
 admin_pw <- Sys.getenv("ADMIN_PW")
 passphrase <- Sys.getenv("PASSPHRASE")
 
-print(user_pw)
-print(admin_pw)
-
 # Init DB using credentials data
 credentials <- data.frame(
   user = c("shiny", "shinymanager"),
