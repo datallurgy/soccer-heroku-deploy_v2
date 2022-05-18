@@ -20,7 +20,9 @@ jobs:
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
         working-directory: 'src/'
-        extra-packages: shinymanager
+        extra-packages: |
+          shinymanager,
+          dotenv
       
     - name: set env variables
       run: |
