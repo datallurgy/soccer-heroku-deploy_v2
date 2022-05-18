@@ -12,6 +12,7 @@ library(FNN)
 data <- read.table("data/PES2019.txt",header=TRUE,sep="\t")
 names(data)[1] <- "player"  #rename from "ï..player" to "player"
 
+dotenv::load_dot_env(file = 'src/.env')
 passphrase <- Sys.getenv("PASSPHRASE")
 
 function(input, output, session) {
