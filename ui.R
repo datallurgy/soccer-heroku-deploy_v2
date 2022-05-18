@@ -111,7 +111,7 @@ ui <- fluidPage(
 )
 
 # Wrap your UI with secure_app
-ui <- secure_app(ui, enable_admin = TRUE)
+ui <- secure_app(ui, enable_admin = TRUE, download = NULL)
 
 
 
