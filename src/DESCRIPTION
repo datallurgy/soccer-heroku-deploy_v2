@@ -6,4 +6,3 @@ Authors@R:
 License: use_mit_license()
 Encoding: UTF-8
 Imports:
-    shinymanager
