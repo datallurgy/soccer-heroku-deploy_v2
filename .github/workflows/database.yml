@@ -20,7 +20,9 @@ jobs:
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
         working-directory: 'src/'
-        extra-packages: shinymanager
+        extra-packages: |
+          shinymanager,
+          dotenv
       
     - name: set env variables
       run: |
@@ -49,8 +51,8 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add src/.env
-        git commit -m "update password database" -a
+        git add data/database.sqlite src/.env
+        git commit -m "update password database and .env passphrase"
         
     - name: Push changes
       uses: ad-m/github-push-action@master
