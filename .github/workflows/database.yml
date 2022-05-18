@@ -47,12 +47,20 @@ jobs:
         echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
         cat src/.env
        
-    - name: Commit files
+    - name: Git Config User
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add .
-        git commit -m "update password database and .env passphrase"
+
+    - name: Commit Database
+      run: |
+        git add data/database.sqlite
+        git commit -m "update password database"
+        
+    - name: Commit .env File
+      run: |
+        git add src/.env
+        git commit -m "update .env passphrase"
         
     - name: Push changes
       uses: ad-m/github-push-action@master
