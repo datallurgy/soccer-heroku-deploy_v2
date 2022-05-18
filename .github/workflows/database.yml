@@ -19,7 +19,7 @@ jobs:
     - name: install dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
       with:
-        extra-packages: any::shinymanager
+        working-directory: 'src/'
       
     - name: set env variables
       run: |
