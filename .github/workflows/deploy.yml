@@ -24,16 +24,14 @@ jobs:
       with:
         working-directory: 'src/'
         extra-packages: |
-          shinymanager,
-          dotenv
+          shinymanager
 
-    - name: create env file
+    - name: set env variables
       run: |
-        touch src/.env
-        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
-        echo ADMIN_PW=${{secrets.SHINYMANAGER_ADMIN}} >> src/.env
-        echo USER_PW=${{secrets.SHINYMANAGER_USER}} >> src/.env
-        cat src/.env
+        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        $GUEST_PW: ${{secrets.SHINYMANAGER_GUEST}}
+        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
     - name: create password database
       run: Rscript src/create_credentials.R
