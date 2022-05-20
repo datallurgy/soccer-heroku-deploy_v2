@@ -1,16 +1,17 @@
 library(shinymanager)
 
-dotenv::load_dot_env(file = 'src/.env')
+# dotenv::load_dot_env(file = 'src/.env')
 
+guest_pw <- Sys.getenv("GUEST_PW")
 user_pw <- Sys.getenv("USER_PW")
 admin_pw <- Sys.getenv("ADMIN_PW")
 passphrase <- Sys.getenv("PASSPHRASE")
 
 # Init DB using credentials data
 credentials <- data.frame(
-  user = c("shiny", "shinymanager"),
-  password = c(user_pw, admin_pw),
-  admin = c(FALSE, TRUE),
+  user = c("guest", "shiny", "shinymanager"),
+  password = c(guest_pw, user_pw, admin_pw),
+  admin = c(FALSE, FALSE, TRUE),
   stringsAsFactors = FALSE
 )
 
