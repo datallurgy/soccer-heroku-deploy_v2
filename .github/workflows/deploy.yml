@@ -29,9 +29,9 @@ jobs:
       
     - name: set env variables
       run: |
-        PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        USER_PW: ${{secrets.SHINYMANAGER_USER}}
+        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
     - name: create password database
       run: Rscript src/create_credentials.R
