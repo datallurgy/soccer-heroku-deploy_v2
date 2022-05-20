@@ -1,6 +1,6 @@
 library(shinymanager)
 
-# dotenv::load_dot_env(file = 'src/.env')
+dotenv::load_dot_env(file = 'src/.env')
 
 user_pw <- Sys.getenv("USER_PW")
 admin_pw <- Sys.getenv("ADMIN_PW")
