@@ -1,0 +1,74 @@
+name: test
+
+on:
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v3
+    
+    - name: set up r
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.0.0'
+    
+    - name: install dependencies
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        working-directory: 'src/'
+        extra-packages: |
+          shinymanager,
+          dotenv
+      
+    - name: set env variables
+      run: |
+        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
+
+    - name: create env file
+      run: |
+        touch src/.env
+        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
+        echo ADMIN_PW=${{secrets.SHINYMANAGER_ADMIN}} >> src/.env
+        echo USER_PW=${{secrets.SHINYMANAGER_USER}} >> src/.env
+        cat src/.env
+        
+    - name: create password database
+      run: Rscript src/create_credentials.R
+
+    - name: modify env file
+      run: |
+        touch src/.env
+        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
+        cat src/.env
+       
+    - name: commit files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data/database.sqlite 
+        git commit -m "update password database"
+        
+    - name: push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+
+    - name: deploy to heroku  
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "soccer-heroku-deploy-v2"
+        heroku_email: "allyson@datallurgy.com"
+        buildpack: "vsv/heroku-buildpack-r"
+        healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
+        delay: 15
+        rollbackonhealthcheckfailed: true
