@@ -61,4 +61,6 @@ jobs:
         rollbackonhealthcheckfailed: true
       env:
         PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
