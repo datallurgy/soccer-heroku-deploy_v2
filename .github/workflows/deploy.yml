@@ -10,6 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: |
+      PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+      GUEST_PW: ${{secrets.SHINYMANAGER_GUEST}}
+      ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+      USER_PW: ${{secrets.SHINYMANAGER_USER}}
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
@@ -27,11 +32,6 @@ jobs:
           shinymanager
 
     - name: create password database
-      env: |
-        PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        GUEST_PW: ${{secrets.SHINYMANAGER_GUEST}}
-        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        USER_PW: ${{secrets.SHINYMANAGER_USER}}
       run: Rscript src/create_credentials.R
        
     - name: commit files
