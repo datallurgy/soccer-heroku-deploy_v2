@@ -60,5 +60,7 @@ jobs:
         delay: 15
         rollbackonhealthcheckfailed: true
       env:
-        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        $GUEST_PW: ${{secrets.SHINYMANAGER_GUEST}}
+        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
