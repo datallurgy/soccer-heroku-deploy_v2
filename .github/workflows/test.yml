@@ -66,9 +66,9 @@ jobs:
       uses: akhileshns/heroku-deploy@v3.12.12
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "soccer-heroku-deploy-v2"
+        heroku_app_name: "soccer-heroku-test"
         heroku_email: "allyson@datallurgy.com"
         buildpack: "vsv/heroku-buildpack-r"
-        healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
-        delay: 15
-        rollbackonhealthcheckfailed: true
+        # healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
+        # delay: 15
+        # rollbackonhealthcheckfailed: true
