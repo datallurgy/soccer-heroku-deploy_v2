@@ -24,7 +24,24 @@ jobs:
       with:
         working-directory: 'src/'
         extra-packages: |
-          shinymanager
+          shinymanager,
+          dotenv
+      
+    - name: set env variables
+      run: |
+        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
+        
+    - name: create password database
+      run: Rscript src/create_credentials.R
+       
+    - name: commit files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data/database.sqlite 
+        git commit -m "update password database"
         
     - name: push changes
       uses: ad-m/github-push-action@master
@@ -43,7 +60,5 @@ jobs:
         delay: 15
         rollbackonhealthcheckfailed: true
       env:
-        $GUEST_PW: ${{secrets.SHINYMANAGER_GUEST}}
-        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
+        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
         
