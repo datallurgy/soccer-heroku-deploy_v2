@@ -26,12 +26,14 @@ jobs:
         extra-packages: |
           shinymanager,
           dotenv
-      
-    - name: set env variables
+
+    - name: create env file
       run: |
-        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
+        touch src/.env
+        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
+        echo ADMIN_PW=${{secrets.SHINYMANAGER_ADMIN}} >> src/.env
+        echo USER_PW=${{secrets.SHINYMANAGER_USER}} >> src/.env
+        cat src/.env
         
     - name: create password database
       run: Rscript src/create_credentials.R
@@ -60,5 +62,4 @@ jobs:
         delay: 15
         rollbackonhealthcheckfailed: true
       env:
-        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        
+        PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
