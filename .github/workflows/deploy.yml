@@ -29,34 +29,19 @@ jobs:
       
     - name: set env variables
       run: |
-        $PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
-        $ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
-        $USER_PW: ${{secrets.SHINYMANAGER_USER}}
-
-    - name: create env file
-      run: |
-        touch src/.env
-        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
-        echo ADMIN_PW=${{secrets.SHINYMANAGER_ADMIN}} >> src/.env
-        echo USER_PW=${{secrets.SHINYMANAGER_USER}} >> src/.env
-        cat src/.env
+        PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
+        ADMIN_PW: ${{secrets.SHINYMANAGER_ADMIN}}
+        USER_PW: ${{secrets.SHINYMANAGER_USER}}
         
     - name: create password database
       run: Rscript src/create_credentials.R
-
-    - name: modify env file
-      run: |
-        touch src/.env
-        echo PASSPHRASE=${{secrets.SHINYMANAGER_PASSPHRASE}} > src/.env
-        cat src/.env
        
     - name: commit files
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add data/database.sqlite 
-        git add src/.env
-        git commit -m "update password database and .env passphrase"
+        git commit -m "update password database"
         
     - name: push changes
       uses: ad-m/github-push-action@master
@@ -71,6 +56,9 @@ jobs:
         heroku_app_name: "soccer-heroku-deploy-v2"
         heroku_email: "allyson@datallurgy.com"
         buildpack: "vsv/heroku-buildpack-r"
+        env:
+          PASSPHRASE: ${{secrets.SHINYMANAGER_PASSPHRASE}}
         healthcheck: "https://soccer-heroku-deploy-v2.herokuapp.com"
         delay: 15
         rollbackonhealthcheckfailed: true
+        
